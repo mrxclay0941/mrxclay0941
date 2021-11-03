@@ -1,0 +1,42 @@
+
+import speech_recognition as sr
+import os
+from gtts import gTTS
+from playsound import playsound
+
+r   = sr.Recognizer()
+
+robot_brain = ""
+
+with sr.Microphone() as source:
+    print("Robot: I'm Listening")
+    audio_data = r.record(source, duration=5)
+print("Robot : . . . ")
+try:
+    you = r.record.recognize_google(audio_data, language="vi")
+except:
+    you = ""
+
+print("you:" + you)
+
+
+if you == "":
+    robot_brain = "toi khong nghe"
+elif you == "hello":
+    robot_brain = " chào bạn "
+elif you == "how are you":
+    robot_brain = " tôi khỏe "
+elif you == "what's your name":
+    robot_brain = " tao tên là cốp "
+
+
+
+else:
+    robot_brain = " cảm ơn mày đọc sai rồi "
+print(robot_brain)
+
+
+tts = gTTS(robot_brain,tld='com.vn',lang='vi')
+
+tts.save("hellochos26474.mp3")
+playsound("hellochos26474.mp3")
